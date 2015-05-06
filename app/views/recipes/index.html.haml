@@ -1,5 +1,7 @@
 = render 'shared/page_title', title: 'Recipes', link: { name: 'Add', dst: new_recipe_path }
 
+= will_paginate
+
 - @recipes.each do |r|
   .row
     .col-lg-2
@@ -10,9 +12,14 @@
     .col-lg-6.well
       %h4= link_to r.name, recipe_path(r)
       %p= r.summary
+      = render 'likes', recipe: r
       %p
         %span.quiet
-          %small #{time_ago_in_words(r.created_at)} ago
+          %small 
+            Updated #{time_ago_in_words(r.updated_at)} ago, 
+            created #{time_ago_in_words(r.created_at)} ago
           
     .col-md-4= image_tag(r.picture.url, size: '250x150', class: 'gravatar') if r.picture?
   %hr
+
+= will_paginate

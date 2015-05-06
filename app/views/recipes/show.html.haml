@@ -12,5 +12,6 @@
       %p
         %strong Steps:
       = simple_format @recipe.description
+      = render 'likes', recipe: @recipe
 
 %h5= link_to 'Return to Recipies Listing', recipes_path, class: 'btn btn-warning btn-small'
