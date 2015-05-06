@@ -1,0 +1,15 @@
+= render 'shared/page_title', title: @recipe.name, link: { name: 'Edit', dst: edit_recipe_path(@recipe) }
+.row
+  .col-md-4.pull-right.center
+    = gravatar_for @recipe.chef, size:200
+    %p
+      %h5 Brought to you by: #{@recipe.chef.chefname}
+  
+  .col-md-8
+    %h3= @recipe.summary
+    .well
+      %p
+        %strong Steps:
+      = simple_format @recipe.description
+
+%h5= link_to 'Return to Recipies Listing', recipes_path, class: 'btn btn-warning btn-small'

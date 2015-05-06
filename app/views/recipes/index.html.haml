@@ -1,0 +1,16 @@
+= render 'shared/page_title', title: 'Recipes', link: { name: 'Add', dst: new_recipe_path }
+
+- @recipes.each do |r|
+  .row
+    .col-lg-2
+      %section.chef_info.center
+        = gravatar_for r.chef, size:100
+        %h5 Chef name: #{r.chef.chefname}
+
+    .col-lg-8.well
+      %h4= link_to r.name, recipe_path(r)
+      %p= r.summary
+      %p
+        %span.quiet
+          %small #{time_ago_in_words(r.created_at)} ago
+  %hr
