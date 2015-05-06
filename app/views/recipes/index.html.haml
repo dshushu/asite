@@ -7,10 +7,12 @@
         = gravatar_for r.chef, size:100
         %h5 Chef name: #{r.chef.chefname}
 
-    .col-lg-8.well
+    .col-lg-6.well
       %h4= link_to r.name, recipe_path(r)
       %p= r.summary
       %p
         %span.quiet
           %small #{time_ago_in_words(r.created_at)} ago
+          
+    .col-md-4= image_tag(r.picture.url, size: '250x150', class: 'gravatar') if r.picture?
   %hr
