@@ -1,5 +1,4 @@
 %h1
-  = render 'shared/header_link', link: { name: :Home, dst: root_path }
   = title
   - if defined?(link) && link
     = link_to link[:name], link[:dst], class: 'btn btn-info'
