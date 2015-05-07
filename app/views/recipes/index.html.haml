@@ -1,15 +1,15 @@
-= render 'shared/page_title', title: 'Recipes', link: { name: 'Add', dst: new_recipe_path }
+= render 'shared/page_title', title: 'Recipes', link: logged_in? ? { name: 'Add', dst: new_recipe_path } : nil
 
 = will_paginate
 
 - @recipes.each do |r|
   .row
-    .col-lg-2
+    .col-xs-2.text-center
       %section.chef_info.center
-        = gravatar_for r.chef, size:100
-        %h5 Chef name: #{r.chef.chefname}
+        = link_to gravatar_for(r.chef, size:100), chef_path(r.chef)
+        %p= link_to r.chef.chefname, chef_path(r.chef)
 
-    .col-lg-6.well
+    .col-sm-6.col-xs-12.well
       %h4= link_to r.name, recipe_path(r)
       %p= r.summary
       = render 'likes', recipe: r
@@ -19,7 +19,7 @@
             Updated #{time_ago_in_words(r.updated_at)} ago, 
             created #{time_ago_in_words(r.created_at)} ago
           
-    .col-md-4= image_tag(r.picture.url, size: '250x150', class: 'gravatar') if r.picture?
+    .col-sm-4= image_tag(r.picture.url, size: '250x150', class: 'gravatar') if r.picture?
   %hr
 
 = will_paginate

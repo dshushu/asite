@@ -1,0 +1,23 @@
+= render 'shared/page_title', title: render('shared/header_link', link: { name: :Chefs, dst: chefs_path }) + @chef.chefname
+
+.row
+  .col-md-4.center
+    = gravatar_for @chef, size:200
+
+.row
+  .col-md-4.center
+    %h3
+      %em Recipies
+    = will_paginate @recipes
+
+- @recipes.each do |r|
+  .row
+    .col-md-6.well
+      %h4= link_to r.name, recipe_path(r)
+      %p= r.summary
+      = render 'recipes/likes', recipe: r
+      %p
+        %span.quiet
+          %small 
+            Updated #{time_ago_in_words(r.updated_at)} ago, 
+            created #{time_ago_in_words(r.created_at)} ago

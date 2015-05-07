@@ -1,17 +1,19 @@
-= render 'shared/page_title', title: @recipe.name, link: { name: 'Edit', dst: edit_recipe_path(@recipe) }
+= render |
+  'shared/page_title', |
+  title: render('shared/header_link', link: { name:'Recipies', dst: recipes_path }) + @recipe.name, |
+  link: logged_in? && @recipe.chef == current_user ? { name: 'Edit', dst: edit_recipe_path(@recipe) } : nil
+
 .row
   .col-md-4.pull-right.center
-    = gravatar_for @recipe.chef, size:200
+    = link_to gravatar_for(@recipe.chef, size:200), chef_path(@recipe.chef)
     %p
-      %h5 Brought to you by: #{@recipe.chef.chefname}
+      %h5 Brought to you by: #{link_to @recipe.chef.chefname, chef_path(@recipe.chef)}
   
   .col-md-8
     %h3= @recipe.summary
     .show_recipe= image_tag(@recipe.picture.url, class: 'gravatar') if @recipe.picture?
     .well
+      = render 'likes', recipe: @recipe
       %p
         %strong Steps:
       = simple_format @recipe.description
-      = render 'likes', recipe: @recipe
-
-%h5= link_to 'Return to Recipies Listing', recipes_path, class: 'btn btn-warning btn-small'

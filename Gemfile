@@ -54,3 +54,5 @@ gem 'mini_magick', '~> 3.8.0'
 
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
+
+gem 'bcrypt', '~> 3.1.7'

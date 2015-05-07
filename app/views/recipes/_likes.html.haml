@@ -1,8 +1,8 @@
 .pull-right
-  = link_to like_recipe_path(recipe, like: true), method: :post, class: "btn btn-sm btn-success" do
+  = link_to like_recipe_path(recipe, like: true), method: :post, class: "btn btn-xs btn-success" do
     %i.glyphicon.glyphicon-thumbs-up
     = recipe.thumbs_up_total
 
-  = link_to like_recipe_path(recipe, like: false), method: :post, class:"btn btn-sm btn-warning" do
+  = link_to like_recipe_path(recipe, like: false), method: :post, class:"btn btn-xs btn-warning" do
     %i.glyphicon.glyphicon-thumbs-down
     = recipe.thumbs_down_total

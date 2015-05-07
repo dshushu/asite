@@ -1,6 +1,7 @@
-.row
-  .col-md-10
-    - flash.each do |type, message|
-      %div{ class: "alert alert-#{type}" }
-        = message
-        <a class="close" data-dismiss="alert">&#215;</a>
+- if flash.any?
+  .row
+    .col-xs-12
+      - flash.each do |type, message|
+        %div{ class: "alert alert-#{type}" }
+          = message
+          <a class="close" data-dismiss="alert">&#215;</a>

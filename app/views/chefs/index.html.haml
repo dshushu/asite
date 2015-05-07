@@ -1,0 +1,29 @@
+= render 'shared/page_title', title: 'Chefs'
+
+.row
+  .col-md-4.col-md-offset-4
+    = will_paginate
+
+- @chefs.each do |c|
+  .row
+    .col-md-2
+      %section.chef_info.center
+        = link_to gravatar_for(c, size:100), chef_path(c)
+        %h5 Chef: #{link_to c.chefname, chef_path(c)}
+
+    -# .col-mg-6.well
+      -# %h4= link_to c.chefname, recipe_path(r)
+      -# %p= r.summary
+      -# = render 'likes', recipe: r
+      -# %p
+        -# %span.quiet
+          -# %small 
+            -# Updated #{time_ago_in_words(r.updated_at)} ago, 
+            -# created #{time_ago_in_words(r.created_at)} ago
+-#           
+    -# .col-md-4= image_tag(r.picture.url, size: '250x150', class: 'gravatar') if r.picture?
+  %hr
+
+.row
+  .col-md-4.col-md-offset-4
+    = will_paginate

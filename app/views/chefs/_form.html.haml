@@ -1,0 +1,16 @@
+= render 'shared/errors', obj: @chef
+
+.row
+  .well.col-md-8.col-offset-2
+    = form_for @chef do |f|
+      = f.label :Name
+      = f.text_field :chefname
+      
+      = f.label :email
+      = f.email_field :email
+      
+      = f.label :password
+      = f.password_field :password
+      
+      = f.submit @chef.new_record? ? 'Register' : 'Update', class: 'btn btn-success'
+      = link_to "Cancel", :back
