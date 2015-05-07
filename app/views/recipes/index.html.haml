@@ -1,8 +1,9 @@
 = render 'shared/page_title', title: 'Recipes', link: logged_in? ? { name: 'Add', dst: new_recipe_path } : nil
 
-%ul.nav.nav-tabs
-  %li.active= link_to "Recipes", recipes_path
-  %li= link_to "Chefs", chefs_path
+-#
+  %ul.nav.nav-tabs
+    %li.active= link_to "Recipes", recipes_path
+    %li= link_to "Chefs", chefs_path
 
 = will_paginate
 
