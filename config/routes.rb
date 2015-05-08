@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     end
   end
   
-  resources :chefs, except: [:new]
+  resources :chefs, except: [:new, :destroy]
   get '/register' => 'chefs#new'
   
   get  '/login'   => 'logins#new'
@@ -18,7 +18,6 @@ Rails.application.routes.draw do
   resources :styles, only: [:new, :create, :show]
   resources :ingredients, only: [:new, :create, :show]
  
-  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

@@ -1,7 +1,8 @@
 = render |
   'shared/page_title', |
-  title: render('shared/header_link', name: 'Recipies', dst: recipes_path) + @recipe.name, |
-  link: logged_in? && @recipe.chef == current_user ? { name: 'Edit', dst: edit_recipe_path(@recipe) } : nil
+  title: render('shared/header_link', name: 'Recipies', dst: recipes_path) + @recipe.name + ' ' + |
+  (logged_in? && current_user.admin ? link_to('Delete', @recipe, method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure?'}) : ''), |
+  link: logged_in? && (@recipe.chef == current_user || current_user.admin) ? { name: 'Edit', dst: edit_recipe_path(@recipe) } : nil
 
 .row
   .col-md-4.pull-right.center
