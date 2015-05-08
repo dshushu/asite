@@ -1,4 +1,4 @@
-= render 'shared/page_title', title: render('shared/header_link', link: { name: :Chefs, dst: chefs_path }) + @chef.chefname
+= render 'shared/page_title', title: render('shared/header_link', name: :Chefs, dst: chefs_path) + @chef.chefname
 
 .row
   .col-md-4.center

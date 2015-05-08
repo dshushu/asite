@@ -1,0 +1,10 @@
+= render 'shared/errors', obj: obj
+
+.row
+  .well.col-md-4
+    = form_for obj do |f|
+      = f.label :name
+      = f.text_field :name
+      
+      = f.submit (obj.new_record? ? 'Create' : 'Update') + ' ' + name, class: 'btn btn-success'
+      = link_to "Cancel", :back

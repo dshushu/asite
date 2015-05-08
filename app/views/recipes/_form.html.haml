@@ -12,10 +12,20 @@
       = f.label :description
       = f.text_area :description, rows:5
       
+      %p
+        %strong Styles:
+        = f.collection_check_boxes :style_ids, Style.all, :id, :name do |cb|
+          - cb.label(class: 'checkbox-inline') { cb.check_box(class: 'checkbox') + cb.text }
+      
+      %p
+        %strong Ingredients:
+        = f.collection_check_boxes :ingredient_ids, Ingredient.all, :id, :name do |cb|
+          - cb.label(class: 'checkbox-inline') { cb.check_box(class: 'checkbox') + cb.text }
+      
       %span.picture= f.file_field :picture, accept: 'image/jpeg,image/gif,image/png'
       
       = f.submit @recipe.new_record? ? 'Create Recipe' : 'Update Recipe', class: 'btn btn-success'
-      = link_to "Cancel", @recipe.new_record? ? recipes_path : recipe_path(@recipe), class: 'btn btn-warning'
+      = link_to "Cancel", @recipe.new_record? ? recipes_path : recipe_path(@recipe)
       
 :javascript
   $('#recipe_picture').bind('change', function() {

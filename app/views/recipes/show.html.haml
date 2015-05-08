@@ -1,6 +1,6 @@
 = render |
   'shared/page_title', |
-  title: render('shared/header_link', link: { name:'Recipies', dst: recipes_path }) + @recipe.name, |
+  title: render('shared/header_link', name: 'Recipies', dst: recipes_path) + @recipe.name, |
   link: logged_in? && @recipe.chef == current_user ? { name: 'Edit', dst: edit_recipe_path(@recipe) } : nil
 
 .row
@@ -11,6 +11,11 @@
   
   .col-md-8
     %h3= @recipe.summary
+    .pull-right
+      - if @recipe.styles.any?
+        %h4 Styles #{render @recipe.styles}
+      - if @recipe.ingredients.any?
+        %h4 Ingredients #{render @recipe.ingredients}
     .show_recipe= image_tag(@recipe.picture.url, class: 'gravatar') if @recipe.picture?
     .well
       = render 'likes', recipe: @recipe
